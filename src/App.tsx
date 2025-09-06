@@ -1,14 +1,14 @@
 import CssBaseline from '@mui/material/CssBaseline'
 
 import Routes from './routes'
-import { ThemeContextProvider } from './theme/ThemeContextProvider'
+import { JotaiThemeProvider } from './theme/theme'
 
 function App() {
   return (
-    <ThemeContextProvider>
+    <JotaiThemeProvider>
       <CssBaseline enableColorScheme />
       <Routes />
-    </ThemeContextProvider>
+    </JotaiThemeProvider>
   )
 }
 

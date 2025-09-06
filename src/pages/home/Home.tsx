@@ -10,7 +10,7 @@ import {
 } from '@mui/material'
 
 import ThemeToggle from '@/components/themeToggle'
-import { useThemeMode } from '@/theme/useThemeMode'
+import { useThemeMode } from '@/theme/theme'
 
 export default function HomePage() {
   const { mode } = useThemeMode()
