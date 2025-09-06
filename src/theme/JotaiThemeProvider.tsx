@@ -3,8 +3,9 @@ import type { ReactNode } from 'react'
 import { ThemeProvider } from '@mui/material/styles'
 import { useAtomValue } from 'jotai'
 
+import { themeModeAtom } from '@/atoms/themeAtoms'
+
 import { darkTheme, lightTheme } from './index'
-import { themeModeAtom } from './themeAtoms'
 
 interface JotaiThemeProviderProps {
   children: ReactNode

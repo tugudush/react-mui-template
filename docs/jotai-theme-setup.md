@@ -39,21 +39,35 @@ The Jotai-based ThemeProvider implementation provides:
 
 ## Architecture
 
-The Jotai-based theme system consists of:
+The Jotai-based theme system follows the recommended Jotai guidelines with separated concerns:
 
 ```
+src/atoms/
+├── index.ts                # Barrel exports for all atoms
+└── themeAtoms.ts          # Jotai atoms for theme state
+
+src/hooks/
+├── index.ts                # Barrel exports for all hooks
+└── useTheme.ts            # Theme state management hook
+
 src/theme/
-├── index.ts                 # Theme configurations (light & dark)
-├── themeAtoms.ts           # Jotai atoms for theme state
+├── index.ts                # Theme configurations (light & dark)
 ├── JotaiThemeProvider.tsx  # Simple theme provider component
-└── theme.ts                # Barrel exports + useThemeMode hook
+└── theme.ts                # Re-exports for backward compatibility
 ```
+
+**Key Benefits of This Structure:**
+
+- ✅ **Centralized State**: All atoms in `src/atoms/`
+- ✅ **Separated Concerns**: Hooks separate from UI components
+- ✅ **Better Organization**: Follows Jotai best practices
+- ✅ **Scalable**: Easy to add new atoms and hooks
 
 ## Implementation Details
 
-### 1. Theme Atoms (`src/theme/themeAtoms.ts`)
+### 1. Theme Atoms (`src/atoms/themeAtoms.ts`)
 
-The core of the Jotai implementation using atomic state:
+The core of the Jotai implementation using atomic state, now properly organized following Jotai guidelines:
 
 ```typescript
 import { atom } from 'jotai'
@@ -102,8 +116,8 @@ import { useAtomValue } from 'jotai'
 import { ThemeProvider } from '@mui/material/styles'
 import type { ReactNode } from 'react'
 
+import { themeModeAtom } from '@/atoms/themeAtoms'
 import { lightTheme, darkTheme } from './index'
-import { themeModeAtom } from './themeAtoms'
 
 interface JotaiThemeProviderProps {
   children: ReactNode
@@ -123,16 +137,16 @@ export const JotaiThemeProvider = ({ children }: JotaiThemeProviderProps) => {
 - **Automatic Subscription**: Only re-renders when theme changes
 - **Clean Code**: Significantly less boilerplate than Context API
 
-### 3. Theme Hook (`src/theme/theme.ts`)
+### 3. Theme Hook (`src/hooks/useTheme.ts`)
 
-Simple hook for theme interaction, consolidated into the barrel export:
+Following Jotai guidelines, the theme hook is now properly separated in the hooks directory:
 
 ```typescript
 import { useAtom, useSetAtom } from 'jotai'
 
-import { themeModeAtom, toggleThemeAtom } from './themeAtoms'
+import { themeModeAtom, toggleThemeAtom } from '@/atoms/themeAtoms'
 
-export const useThemeMode = () => {
+export const useTheme = () => {
   const [mode, setMode] = useAtom(themeModeAtom)
   const toggle = useSetAtom(toggleThemeAtom)
 
@@ -150,7 +164,8 @@ export const useThemeMode = () => {
 - **Toggle Function**: Optimized toggle logic
 - **Type Safety**: Full TypeScript support
 - **No Provider Required**: Works anywhere in the component tree
-- **Barrel Export**: Consolidated with other theme exports
+- **Centralized Hook**: Available via `@/hooks/useTheme`
+- **Follows Guidelines**: Proper separation of atoms and hooks
 
 ## Integration Steps
 
@@ -183,10 +198,10 @@ function App() {
 In any component where you need theme access:
 
 ```typescript
-import { useThemeMode } from '@/theme/theme'
+import { useTheme } from '@/hooks/useTheme'
 
 function MyComponent() {
-  const { mode, setMode, toggleTheme } = useThemeMode()
+  const { mode, setMode, toggleTheme } = useTheme()
 
   return (
     <div>
@@ -209,10 +224,10 @@ Example implementation:
 ````typescript
 import { IconButton } from '@mui/material'
 import { Brightness4, Brightness7 } from '@mui/icons-material'
-import { useThemeMode } from '@/theme/theme'
+import { useTheme } from '@/hooks/useTheme'
 
 const ThemeToggle = () => {
-  const { mode, toggleTheme } = useThemeMode()
+  const { mode, toggleTheme } = useTheme()
 
   return (
     <IconButton onClick={toggleTheme} color="inherit">
@@ -227,7 +242,7 @@ const ThemeToggle = () => {
 ```typescript
 import { useAtomValue } from 'jotai'
 
-import { themeModeAtom } from '@/theme/themeAtoms'
+import { themeModeAtom } from '@/atoms/themeAtoms'
 
 function SomeDeepComponent() {
   const mode = useAtomValue(themeModeAtom)
@@ -242,7 +257,7 @@ import { atom } from 'jotai'
 // Usage
 import { useAtomValue } from 'jotai'
 
-import { themeModeAtom } from './themeAtoms'
+import { themeModeAtom } from '@/atoms/themeAtoms'
 
 // Derived atom for theme-dependent logic
 export const isDarkModeAtom = atom((get) => get(themeModeAtom) === 'dark')
@@ -257,7 +272,7 @@ import { useEffect } from 'react'
 
 import { useAtomValue } from 'jotai'
 
-import { themeModeAtom } from '@/theme/themeAtoms'
+import { themeModeAtom } from '@/atoms/themeAtoms'
 
 function ThemeAwareComponent() {
   const mode = useAtomValue(themeModeAtom)
@@ -302,7 +317,7 @@ Jotai atoms can be code-split naturally:
 
 ```typescript
 // Only load theme atoms when needed
-const themeAtoms = await import('./themeAtoms')
+const themeAtoms = await import('@/atoms/themeAtoms')
 ```
 
 ## Testing
@@ -312,7 +327,7 @@ Testing Jotai atoms is much simpler than Context API:
 ```typescript
 import { createStore } from 'jotai'
 
-import { themeModeAtom, toggleThemeAtom } from './themeAtoms'
+import { themeModeAtom, toggleThemeAtom } from '@/atoms/themeAtoms'
 
 describe('Theme Atoms', () => {
   test('should toggle theme', () => {
@@ -343,30 +358,45 @@ If you have an existing Context-based theme system:
 // Complex setup with providers, context, and hooks
 ```
 
-### After (Jotai):
+### After (Jotai - Following Guidelines):
 
 ```typescript
-// Single atoms file
-// - themeAtoms.ts
-// Simple provider and hook
+// Organized structure following Jotai guidelines:
+// - src/atoms/themeAtoms.ts
+// - src/hooks/useTheme.ts
+// - src/theme/JotaiThemeProvider.tsx
+// Simple and properly organized
 ```
 
 ### Migration Steps:
 
 1. Install Jotai: `npm install jotai`
-2. Create atoms file
-3. Replace Context Provider with JotaiThemeProvider
-4. Update hooks to use Jotai atoms
-5. Remove old Context files
+2. Create `src/atoms/` directory and atoms files
+3. Create `src/hooks/` directory and hook files
+4. Replace Context Provider with JotaiThemeProvider
+5. Update import paths to use new structure
+6. Remove old Context files
 
 ## Best Practices
 
-1. **Atom Organization**: Keep related atoms in the same file
-2. **Derived Atoms**: Use derived atoms for computed values
-3. **Write-only Atoms**: Use for actions that don't need to return values
-4. **Persistence**: Use `atomWithStorage` for persistent state
-5. **TypeScript**: Let Jotai infer types automatically
-6. **Testing**: Test atoms independently of components
+1. **Atom Organization**: Keep related atoms in the same file under `src/atoms/`
+2. **Hook Separation**: Keep hooks in `src/hooks/` separate from atoms
+3. **Derived Atoms**: Use derived atoms for computed values
+4. **Write-only Atoms**: Use for actions that don't need to return values
+5. **Persistence**: Use `atomWithStorage` for persistent state
+6. **TypeScript**: Let Jotai infer types automatically
+7. **Testing**: Test atoms independently of components
+8. **Barrel Exports**: Use `index.ts` files for clean imports
+
+## File Organization Benefits
+
+The new structure following Jotai guidelines provides:
+
+- **Centralized State**: All atoms in one place (`src/atoms/`)
+- **Separated Concerns**: Hooks separate from atoms and UI components
+- **Better Discoverability**: Easy to find all state atoms
+- **Scalability**: Easy to add new features following the same pattern
+- **Maintainability**: Clear separation between state, logic, and UI
 
 ## Troubleshooting
 

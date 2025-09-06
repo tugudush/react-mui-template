@@ -1,18 +1,10 @@
-import { useAtom, useSetAtom } from 'jotai'
-
-import { themeModeAtom, toggleThemeAtom } from './themeAtoms'
-
+// Re-exports for backward compatibility and centralized theme access
 export { JotaiThemeProvider } from './JotaiThemeProvider'
-export type { ThemeMode } from './themeAtoms'
 export { lightTheme, darkTheme } from './index'
 
-export const useThemeMode = () => {
-  const [mode, setMode] = useAtom(themeModeAtom)
-  const toggle = useSetAtom(toggleThemeAtom)
+// Re-export types and hooks from their new locations
+export type { ThemeMode } from '@/atoms/themeAtoms'
+export { useTheme } from '@/hooks/useTheme'
 
-  return {
-    mode,
-    setMode,
-    toggleTheme: toggle,
-  }
-}
+// Deprecated: use useTheme instead - kept for backward compatibility
+export { useTheme as useThemeMode } from '@/hooks/useTheme'
