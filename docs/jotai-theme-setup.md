@@ -53,7 +53,7 @@ src/hooks/
 src/theme/
 ├── index.ts                # Theme configurations (light & dark)
 ├── JotaiThemeProvider.tsx  # Simple theme provider component
-└── theme.ts                # Re-exports for backward compatibility
+└── theme.ts                # Core theme exports (themes and provider)
 ```
 
 **Key Benefits of This Structure:**
@@ -62,6 +62,28 @@ src/theme/
 - ✅ **Separated Concerns**: Hooks separate from UI components
 - ✅ **Better Organization**: Follows Jotai best practices
 - ✅ **Scalable**: Easy to add new atoms and hooks
+- ✅ **Consistent Imports**: Direct barrel exports, no re-export chains
+
+## Import Best Practices
+
+Always use direct imports from the canonical locations:
+
+```typescript
+// ✅ Correct - Direct from hooks
+// ✅ Correct - Direct from atoms (if needed)
+import { themeModeAtom } from '@/atoms/themeAtoms'
+import { useTheme } from '@/hooks/useTheme'
+
+// ❌ Avoid - No re-export chains or indirect paths
+// import { useTheme } from '@/theme/theme'
+```
+
+This ensures:
+
+- **Consistent import patterns** across the codebase
+- **Better tree-shaking** and bundle optimization
+- **Clearer dependency relationships**
+- **Easier refactoring** and maintenance
 
 ## Implementation Details
 

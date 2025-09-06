@@ -334,8 +334,8 @@ describe('useCounter', () => {
 
 See the existing theme implementation in this project:
 
-- `src/theme/themeAtoms.ts` - Atom definitions
-- `src/theme/theme.ts` - Hook implementation
+- `src/atoms/themeAtoms.ts` - Atom definitions
+- `src/hooks/useTheme.ts` - Hook implementation
 - `src/theme/JotaiThemeProvider.tsx` - Provider component
 - `src/components/themeToggle/ThemeToggle.tsx` - Consumer component
 

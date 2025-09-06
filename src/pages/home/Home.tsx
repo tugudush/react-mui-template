@@ -1,7 +1,7 @@
 import { AppBar, Button, Toolbar, Typography } from '@mui/material'
 
 import ThemeToggle from '@/components/themeToggle'
-import { useThemeMode } from '@/theme/theme'
+import { useTheme } from '@/hooks/useTheme'
 
 import {
   StyledAppBarTitle,
@@ -13,7 +13,7 @@ import {
 } from './Home.styled'
 
 export default function HomePage() {
-  const { mode } = useThemeMode()
+  const { mode } = useTheme()
 
   return (
     <StyledRootBox>
