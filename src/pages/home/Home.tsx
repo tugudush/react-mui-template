@@ -1,33 +1,33 @@
-import {
-  AppBar,
-  Box,
-  Button,
-  Container,
-  Paper,
-  Stack,
-  Toolbar,
-  Typography,
-} from '@mui/material'
+import { AppBar, Button, Toolbar, Typography } from '@mui/material'
 
 import ThemeToggle from '@/components/themeToggle'
-import { useThemeMode } from '@/theme/useThemeMode'
+import { useTheme } from '@/hooks/useTheme'
+
+import {
+  StyledAppBarTitle,
+  StyledButtonStack,
+  StyledFeaturesPaper,
+  StyledMainContainer,
+  StyledRootBox,
+  StyledWelcomePaper,
+} from './Home.styled'
 
 export default function HomePage() {
-  const { mode } = useThemeMode()
+  const { mode } = useTheme()
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <StyledRootBox>
       <AppBar position='static'>
         <Toolbar>
-          <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
+          <StyledAppBarTitle variant='h6' component='div'>
             React MUI Template
-          </Typography>
+          </StyledAppBarTitle>
           <ThemeToggle />
         </Toolbar>
       </AppBar>
 
-      <Container maxWidth='md' sx={{ mt: 4 }}>
-        <Paper elevation={3} sx={{ p: 4, mb: 4 }}>
+      <StyledMainContainer maxWidth='md'>
+        <StyledWelcomePaper elevation={3}>
           <Typography variant='h2' component='h1' gutterBottom>
             Welcome to React MUI Template
           </Typography>
@@ -40,7 +40,7 @@ export default function HomePage() {
             localStorage and respects your system's color scheme preference.
           </Typography>
 
-          <Stack direction='row' spacing={2} sx={{ mt: 3 }}>
+          <StyledButtonStack direction='row' spacing={2}>
             <Button variant='contained' color='primary'>
               Primary Button
             </Button>
@@ -48,10 +48,10 @@ export default function HomePage() {
               Secondary Button
             </Button>
             <Button variant='text'>Text Button</Button>
-          </Stack>
-        </Paper>
+          </StyledButtonStack>
+        </StyledWelcomePaper>
 
-        <Paper elevation={2} sx={{ p: 3 }}>
+        <StyledFeaturesPaper elevation={2}>
           <Typography variant='h5' gutterBottom>
             Theme Features
           </Typography>
@@ -60,8 +60,8 @@ export default function HomePage() {
             detection • Smooth transitions between light and dark modes • CSS
             variables for better performance • Customizable theme tokens
           </Typography>
-        </Paper>
-      </Container>
-    </Box>
+        </StyledFeaturesPaper>
+      </StyledMainContainer>
+    </StyledRootBox>
   )
 }

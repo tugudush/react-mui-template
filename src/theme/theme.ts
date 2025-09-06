@@ -1,4 +1,3 @@
-export { ThemeContextProvider } from './ThemeContextProvider'
-export type { ThemeMode, ThemeContextType } from './ThemeContext'
-export { useThemeMode } from './useThemeMode'
+// Core theme exports - themes and provider
+export { JotaiThemeProvider } from './JotaiThemeProvider'
 export { lightTheme, darkTheme } from './index'

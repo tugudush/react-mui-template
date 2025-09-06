@@ -1,12 +1,10 @@
-import React from 'react'
-
 import { Brightness4, Brightness7 } from '@mui/icons-material'
 import { IconButton } from '@mui/material'
 
-import { useThemeMode } from '@/theme/useThemeMode'
+import { useTheme } from '@/hooks/useTheme'
 
-const ThemeToggle: React.FC = () => {
-  const { mode, toggleTheme } = useThemeMode()
+const ThemeToggle = () => {
+  const { mode, toggleTheme } = useTheme()
 
   return (
     <IconButton onClick={toggleTheme} color='inherit' aria-label='toggle theme'>
