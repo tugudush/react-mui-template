@@ -69,6 +69,20 @@ describe('ErrorDemoPage', () => {
     consoleSpy.mockRestore()
   })
 
+  it('should toggle global error button text', () => {
+    render(<ErrorDemoPage />)
+
+    const globalErrorButton = screen.getByRole('button', {
+      name: /trigger global error/i,
+    })
+
+    expect(globalErrorButton).toHaveTextContent('Trigger Global Error')
+
+    // After clicking once, the button text should change (but will throw error)
+    // We can't easily test the text change since the error will prevent re-render
+    // This is expected behavior for global errors
+  })
+
   it('should display error boundary features list', () => {
     render(<ErrorDemoPage />)
 

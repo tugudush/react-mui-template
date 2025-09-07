@@ -137,9 +137,9 @@ export default function ErrorDemoPage() {
                 <Button
                   variant='contained'
                   color='error'
-                  onClick={() => setThrowGlobalError(true)}
+                  onClick={() => setThrowGlobalError(!throwGlobalError)}
                 >
-                  Trigger Global Error
+                  {throwGlobalError ? 'Fix Global Component' : 'Trigger Global Error'}
                 </Button>
               </Box>
             </CardContent>
