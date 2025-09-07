@@ -12,10 +12,21 @@ describe('LoadingFallback Component', () => {
     expect(loadingElement).toBeInTheDocument()
   })
 
-  it('should render as a span element', () => {
+  it('should render circular progress indicator', () => {
     render(<LoadingFallback />)
 
-    const loadingElement = screen.getByText('Loading...')
-    expect(loadingElement.tagName).toBe('SPAN')
+    const progressElement = screen.getByRole('progressbar')
+    expect(progressElement).toBeInTheDocument()
+  })
+
+  it('should be contained in a flex box', () => {
+    const { container } = render(<LoadingFallback />)
+
+    const boxElement = container.firstChild
+    expect(boxElement).toHaveClass('MuiBox-root')
+  })
+
+  it('should render without crashing', () => {
+    expect(() => render(<LoadingFallback />)).not.toThrow()
   })
 })

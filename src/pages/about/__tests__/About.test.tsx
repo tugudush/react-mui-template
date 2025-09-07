@@ -14,6 +14,22 @@ describe('About Page', () => {
     expect(heading.tagName).toBe('H1')
   })
 
+  it('should render description paragraph', () => {
+    render(<AboutPage />)
+
+    const description = screen.getByText(/this is the about page/i)
+    expect(description).toBeInTheDocument()
+  })
+
+  it('should render within a container', () => {
+    render(<AboutPage />)
+
+    const container = screen
+      .getByRole('heading', { name: /about/i })
+      .closest('.MuiContainer-root')
+    expect(container).toBeInTheDocument()
+  })
+
   it('should render without crashing', () => {
     expect(() => render(<AboutPage />)).not.toThrow()
   })
