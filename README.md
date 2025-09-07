@@ -34,6 +34,7 @@ src/
 ├── pages/              # Page components
 │   ├── home/           # Home page
 │   ├── about/          # About page
+│   ├── errorDemo/      # Error demonstration page
 │   └── error/          # 404/Error page
 ├── theme/              # MUI theme configuration
 ├── test-utils.tsx      # Testing utilities
@@ -90,6 +91,7 @@ The app will be available at `http://localhost:5173`
 - `npm test` - Run tests in watch mode
 - `npm run test:run` - Run tests once
 - `npm run test:coverage` - Run tests with coverage report
+- `npm run test:watch` - Run tests in watch mode
 - `npm run test:ui` - Run tests with Vitest UI
 
 ### Combined Workflows
@@ -103,6 +105,7 @@ The app will be available at `http://localhost:5173`
 
 - `/` - Home page
 - `/about` - About page
+- `/error-demo` - Error demonstration page
 - `*` - 404/Error page (catch-all)
 
 ## Key Features

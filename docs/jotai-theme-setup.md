@@ -243,11 +243,7 @@ function MyComponent() {
 
 Example implementation:
 
-`### 4. Theme Toggle Component
-
-Example implementation:
-
-````typescript
+```typescript
 import { IconButton } from '@mui/material'
 import { Brightness4, Brightness7 } from '@mui/icons-material'
 import { useTheme } from '@/hooks/useTheme'
@@ -263,10 +259,13 @@ const ThemeToggle = () => {
 }
 
 export default ThemeToggle
-```## Advanced Usage
+```
+
+## Advanced Usage
 
 ### Reading Theme in Any Component
 
+```typescript
 ```typescript
 import { useAtomValue } from 'jotai'
 
@@ -276,6 +275,22 @@ function SomeDeepComponent() {
   const mode = useAtomValue(themeModeAtom)
   // This component will only re-render when theme changes
 }
+```
+
+### Custom Theme Logic
+
+```typescript
+import { atom } from 'jotai'
+import { useAtomValue } from 'jotai'
+
+import { themeModeAtom } from '@/atoms/themeAtoms'
+
+// Derived atom for theme-dependent logic
+export const isDarkModeAtom = atom((get) => get(themeModeAtom) === 'dark')
+
+// Usage
+const isDark = useAtomValue(isDarkModeAtom)
+```
 ````
 
 ### Custom Theme Logic

@@ -84,6 +84,13 @@ component-name/
 - Keep components functional, avoid class components
 - Use React 19 features (latest stable version)
 
+## Current Routes
+
+- `/` - Home page (`src/pages/home`)
+- `/about` - About page (`src/pages/about`)
+- `/error-demo` - Error demonstration page (`src/pages/errorDemo`)
+- `*` - 404/Error page catchall (`src/pages/error`)
+
 ## Build & Bundle
 
 - Vite handles code splitting automatically with lazy imports
