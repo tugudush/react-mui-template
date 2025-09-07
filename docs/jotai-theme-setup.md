@@ -247,7 +247,7 @@ Example implementation:
 
 Example implementation:
 
-```typescript
+````typescript
 import { IconButton } from '@mui/material'
 import { Brightness4, Brightness7 } from '@mui/icons-material'
 import { useTheme } from '@/hooks/useTheme'
