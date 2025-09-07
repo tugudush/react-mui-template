@@ -129,7 +129,9 @@ export default function ErrorDemoPage() {
                   borderRadius: 1,
                 }}
               >
-                <Typography color='success.main'>✅ Component working correctly</Typography>
+                <Typography color='success.main'>
+                  ✅ Component working correctly
+                </Typography>
               </Box>
 
               <Box sx={{ mt: 2 }}>
@@ -137,7 +139,9 @@ export default function ErrorDemoPage() {
                   variant='contained'
                   color='error'
                   onClick={() => {
-                    throw new Error('This is a global error to demonstrate the global error boundary!')
+                    throw new Error(
+                      'This is a global error to demonstrate the global error boundary!'
+                    )
                   }}
                 >
                   Trigger Global Error
