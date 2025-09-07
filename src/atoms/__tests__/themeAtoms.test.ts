@@ -1,7 +1,11 @@
 import { createStore } from 'jotai'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { themeModeAtom, toggleThemeAtom, type ThemeMode } from '@/atoms/themeAtoms'
+import {
+  type ThemeMode,
+  themeModeAtom,
+  toggleThemeAtom,
+} from '@/atoms/themeAtoms'
 
 // Mock window.matchMedia at module level
 Object.defineProperty(window, 'matchMedia', {
@@ -49,13 +53,13 @@ describe('Theme Atoms', () => {
 
       // Clear the module cache and re-import to get fresh initialization
       vi.resetModules()
-      
+
       // Re-import the atoms with dark theme preference
       return import('@/atoms/themeAtoms').then(({ themeModeAtom }) => {
         const newStore = createStore()
         const mode = newStore.get(themeModeAtom)
         expect(mode).toBe('dark')
-        
+
         // Restore original matchMedia
         window.matchMedia = originalMatchMedia
       })
@@ -64,7 +68,7 @@ describe('Theme Atoms', () => {
     it('should update theme mode', () => {
       const newMode: ThemeMode = 'dark'
       store.set(themeModeAtom, newMode)
-      
+
       const mode = store.get(themeModeAtom)
       expect(mode).toBe('dark')
     })
@@ -72,7 +76,7 @@ describe('Theme Atoms', () => {
     it('should persist theme mode to localStorage', () => {
       const newMode: ThemeMode = 'dark'
       store.set(themeModeAtom, newMode)
-      
+
       // Check if localStorage.setItem was called
       expect(localStorage.setItem).toHaveBeenCalledWith(
         'theme-mode',
@@ -85,10 +89,10 @@ describe('Theme Atoms', () => {
     it('should toggle from light to dark', () => {
       // Set initial state to light
       store.set(themeModeAtom, 'light')
-      
+
       // Toggle theme
       store.set(toggleThemeAtom)
-      
+
       const mode = store.get(themeModeAtom)
       expect(mode).toBe('dark')
     })
@@ -96,10 +100,10 @@ describe('Theme Atoms', () => {
     it('should toggle from dark to light', () => {
       // Set initial state to dark
       store.set(themeModeAtom, 'dark')
-      
+
       // Toggle theme
       store.set(toggleThemeAtom)
-      
+
       const mode = store.get(themeModeAtom)
       expect(mode).toBe('light')
     })
@@ -107,15 +111,15 @@ describe('Theme Atoms', () => {
     it('should toggle multiple times correctly', () => {
       // Start with light
       store.set(themeModeAtom, 'light')
-      
+
       // First toggle: light -> dark
       store.set(toggleThemeAtom)
       expect(store.get(themeModeAtom)).toBe('dark')
-      
+
       // Second toggle: dark -> light
       store.set(toggleThemeAtom)
       expect(store.get(themeModeAtom)).toBe('light')
-      
+
       // Third toggle: light -> dark
       store.set(toggleThemeAtom)
       expect(store.get(themeModeAtom)).toBe('dark')

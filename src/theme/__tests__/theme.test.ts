@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { JotaiThemeProvider, lightTheme, darkTheme } from '../theme'
+import { JotaiThemeProvider, darkTheme, lightTheme } from '../theme'
 
 describe('Theme exports', () => {
   it('should export JotaiThemeProvider', () => {

@@ -1,19 +1,22 @@
 import { screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-// Mock ThemeToggle to avoid MUI icons issues
-vi.mock('@/components/themeToggle', () => ({
-  default: () => <button aria-label="toggle theme">Theme Toggle</button>,
-}))
+import { render } from '@/test-utils'
 
 import HomePage from '../Home'
-import { render } from '@/test-utils'
+
+// Mock ThemeToggle to avoid MUI icons issues
+vi.mock('@/components/themeToggle', () => ({
+  default: () => <button aria-label='toggle theme'>Theme Toggle</button>,
+}))
 
 describe('Home Page', () => {
   it('should render main heading', () => {
     render(<HomePage />)
 
-    const heading = screen.getByRole('heading', { name: /welcome to react mui template/i })
+    const heading = screen.getByRole('heading', {
+      name: /welcome to react mui template/i,
+    })
     expect(heading).toBeInTheDocument()
   })
 
@@ -37,7 +40,7 @@ describe('Home Page', () => {
     // Should display either light or dark mode
     const themeText = screen.getByText(/current theme mode:/i)
     expect(themeText).toBeInTheDocument()
-    
+
     // Should show either light or dark
     expect(
       screen.getByText('light') || screen.getByText('dark')
@@ -47,15 +50,23 @@ describe('Home Page', () => {
   it('should render action buttons', () => {
     render(<HomePage />)
 
-    expect(screen.getByRole('button', { name: /primary button/i })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /secondary button/i })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /text button/i })).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: /primary button/i })
+    ).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: /secondary button/i })
+    ).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: /text button/i })
+    ).toBeInTheDocument()
   })
 
   it('should render features section', () => {
     render(<HomePage />)
 
-    const featuresHeading = screen.getByRole('heading', { name: /theme features/i })
+    const featuresHeading = screen.getByRole('heading', {
+      name: /theme features/i,
+    })
     expect(featuresHeading).toBeInTheDocument()
 
     const featuresText = screen.getByText(/persistent theme preference/i)
@@ -65,7 +76,9 @@ describe('Home Page', () => {
   it('should render description text', () => {
     render(<HomePage />)
 
-    const description = screen.getByText(/this template includes material-ui components/i)
+    const description = screen.getByText(
+      /this template includes material-ui components/i
+    )
     expect(description).toBeInTheDocument()
   })
 

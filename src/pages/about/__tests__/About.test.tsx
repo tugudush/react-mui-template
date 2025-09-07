@@ -1,8 +1,9 @@
 import { screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import AboutPage from '../About'
 import { render } from '@/test-utils'
+
+import AboutPage from '../About'
 
 describe('About Page', () => {
   it('should render about heading', () => {
