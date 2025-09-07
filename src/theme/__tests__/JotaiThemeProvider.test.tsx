@@ -1,16 +1,16 @@
+import { type ReactNode } from 'react'
+
 import { render, screen } from '@testing-library/react'
 import { Provider as JotaiProvider, createStore } from 'jotai'
-import { type ReactNode } from 'react'
 import { describe, expect, it } from 'vitest'
 
-import { JotaiThemeProvider } from '../JotaiThemeProvider'
 import { themeModeAtom } from '@/atoms/themeAtoms'
+
+import { JotaiThemeProvider } from '../JotaiThemeProvider'
 
 // Test component to verify theme is applied correctly
 const TestComponent = () => (
-  <div data-testid="theme-test">
-    Theme Provider Working
-  </div>
+  <div data-testid='theme-test'>Theme Provider Working</div>
 )
 
 const renderWithJotaiStore = (
@@ -22,9 +22,7 @@ const renderWithJotaiStore = (
 
   return (
     <JotaiProvider store={store}>
-      <JotaiThemeProvider>
-        {component}
-      </JotaiThemeProvider>
+      <JotaiThemeProvider>{component}</JotaiThemeProvider>
     </JotaiProvider>
   )
 }
@@ -83,7 +81,7 @@ describe('JotaiThemeProvider', () => {
     const NestedComponent = () => (
       <div>
         <TestComponent />
-        <div data-testid="nested">Nested Content</div>
+        <div data-testid='nested'>Nested Content</div>
       </div>
     )
 
