@@ -77,6 +77,44 @@ src/__tests__/
 - Test utilities: `test-utils.tsx`
 - Mock files: `__mocks__/moduleName.ts`
 
+## Configuration
+
+### Unified Vite Configuration
+
+This project uses a **unified `vite.config.ts`** that includes both build and test configuration. This approach is recommended for most projects because:
+
+**✅ Benefits:**
+
+- Single source of truth for all Vite configuration
+- No duplication of aliases, plugins, etc.
+- Simpler project structure
+- Follows Vite community standards
+- Easier to keep build and test environments in sync
+
+**📁 Structure:**
+
+```typescript
+// vite.config.ts
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: { '@': path.resolve(__dirname, './src') },
+  },
+  test: {
+    // Vitest configuration
+    globals: true,
+    environment: 'happy-dom',
+    setupFiles: ['./src/test-setup.ts'],
+  },
+})
+```
+
+**When to consider separate configs:**
+
+- Large monorepos with complex test setups
+- Significantly different plugin requirements
+- Different environments with vastly different needs
+
 ## Testing Patterns
 
 ### 1. Atom Testing Pattern
@@ -366,7 +404,7 @@ All projects must have these test scripts:
 
 ### Coverage Thresholds
 
-Configure minimum coverage in `vitest.config.ts`:
+Configure minimum coverage in `vite.config.ts`:
 
 ```typescript
 coverage: {
