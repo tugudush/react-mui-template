@@ -6,10 +6,7 @@ applyTo: '**'
 
 ## Overview
 
-This project uses **Vitest** with React Testing Library for comprehens```typescript
-import { render, screen } from '@/test-utils'
-
-describe('YourComponent', () => { testing. All code should include appropriate tests following the patterns established in this template.
+This project uses **Vitest** with React Testing Library for comprehensive testing. All code should include appropriate tests following the patterns established in this template.
 
 ## Core Testing Principles
 
@@ -476,4 +473,3 @@ Before submitting code, ensure:
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 - [Jest DOM Matchers](https://github.com/testing-library/jest-dom)
 - [Jotai Testing Guide](https://jotai.org/docs/guides/testing)
-- [Project Testing Guide](../../docs/testing-guide.md)
