@@ -14,10 +14,23 @@ This project uses **Vitest** as the testing framework, along with React Testing 
 
 ## Configuration
 
-### Vitest Configuration (`vitest.config.ts`)
+### Vitest Configuration (`vite.config.ts`)
+
+The testing configuration is unified with the main Vite configuration for simplicity:
 
 ```typescript
+/// <reference types="vitest" />
+import react from '@vitejs/plugin-react'
+import path from 'path'
+import { defineConfig } from 'vite'
+
 export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
   test: {
     globals: true,
     environment: 'happy-dom',
