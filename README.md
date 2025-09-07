@@ -6,15 +6,15 @@ A simple and minimal Vite + React + React Router template with modern developmen
 
 - ⚡️ **Vite** - Fast build tool and dev server
 - ⚛️ **React 19** - Latest React version
-- 🛣️ **React Router 7** - Client-side routing
+- 🛣️ **React Router 7** - Client-side routing with v7 API
 - 🎨 **Material-UI 7** - Modern React component library
 - 🌙 **Theme Management** - Jotai-based atomic state for themes
 - 📦 **Lazy Loading** - Code splitting with React.lazy()
 - ⏳ **Suspense** - Loading fallbacks for async components
 - 🧪 **Testing** - Vitest + React Testing Library setup
-- 🎨 **TypeScript** - Type safety
-- 🔧 **ESLint** - Code linting
-- 💅 **Prettier** - Code formatting
+- 🎨 **TypeScript** - Type safety with strict configuration
+- 🔧 **ESLint** - Code linting with React and TypeScript rules
+- 💅 **Prettier** - Code formatting with import sorting
 - 📁 **Clean Architecture** - Organized folder structure
 
 ## Project Structure
@@ -95,7 +95,7 @@ The app will be available at `http://localhost:5173`
 ### Combined Workflows
 
 - `npm run lf` - Lint fix + Format
-- `npm run ltf` - Lint fix + Type check + Format
+- `npm run ltf` - Lint fix + Type check + Format (**recommended for commits**)
 - `npm run ltfb` - Lint fix + Type check + Format + Build
 - `npm run ltft` - Lint fix + Type check + Format + Test
 
@@ -111,8 +111,8 @@ The app will be available at `http://localhost:5173`
 
 - **CSS Variables**: Optimal theming performance with CSS variables
 - **Theme Switching**: Light/dark mode with system preference detection
-- **Jotai State Management**: Atomic state management for themes
-- **Persistent Preferences**: Theme preferences saved to localStorage
+- **Jotai State Management**: Atomic state management for themes with persistence
+- **Persistent Preferences**: Theme preferences saved to localStorage automatically
 
 ### Lazy Loading
 
@@ -125,9 +125,10 @@ Each route is wrapped with a `SuspenseRoute` component that provides loading fal
 ### Testing Infrastructure
 
 - **Vitest**: Modern testing framework with fast execution
-- **React Testing Library**: Component testing utilities
+- **React Testing Library**: Component testing utilities with semantic queries
 - **Test Coverage**: Comprehensive coverage for atoms, hooks, and components
 - **Mocking**: Proper mocking for localStorage and matchMedia APIs
+- **Happy DOM**: Fast DOM environment for testing
 
 ### Type Safety
 

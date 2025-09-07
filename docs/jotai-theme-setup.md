@@ -202,7 +202,7 @@ npm install jotai
 In `src/App.tsx`, wrap your application with the JotaiThemeProvider:
 
 ```typescript
-import { JotaiThemeProvider } from './theme/JotaiThemeProvider'
+import { JotaiThemeProvider } from './theme/theme'
 import CssBaseline from '@mui/material/CssBaseline'
 
 function App() {
@@ -243,7 +243,11 @@ function MyComponent() {
 
 Example implementation:
 
-````typescript
+`### 4. Theme Toggle Component
+
+Example implementation:
+
+```typescript
 import { IconButton } from '@mui/material'
 import { Brightness4, Brightness7 } from '@mui/icons-material'
 import { useTheme } from '@/hooks/useTheme'
@@ -252,11 +256,13 @@ const ThemeToggle = () => {
   const { mode, toggleTheme } = useTheme()
 
   return (
-    <IconButton onClick={toggleTheme} color="inherit">
+    <IconButton onClick={toggleTheme} color="inherit" aria-label="toggle theme">
       {mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
     </IconButton>
   )
 }
+
+export default ThemeToggle
 ```## Advanced Usage
 
 ### Reading Theme in Any Component
