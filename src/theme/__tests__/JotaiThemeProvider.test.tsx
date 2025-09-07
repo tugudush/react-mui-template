@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react'
 
-import { render, screen } from '@testing-library/react'
+import { act, render, screen } from '@testing-library/react'
 import { Provider as JotaiProvider, createStore } from 'jotai'
 import { describe, expect, it } from 'vitest'
 
@@ -63,8 +63,10 @@ describe('JotaiThemeProvider', () => {
 
     expect(screen.getByTestId('theme-test')).toBeInTheDocument()
 
-    // Change theme mode
-    store.set(themeModeAtom, 'dark')
+    // Change theme mode within act to prevent warnings
+    act(() => {
+      store.set(themeModeAtom, 'dark')
+    })
 
     rerender(
       <JotaiProvider store={store}>

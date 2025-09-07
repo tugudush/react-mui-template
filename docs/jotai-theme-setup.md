@@ -265,7 +265,7 @@ export default ThemeToggle
 
 ### Reading Theme in Any Component
 
-```typescript
+````typescript
 ```typescript
 import { useAtomValue } from 'jotai'
 
@@ -275,7 +275,7 @@ function SomeDeepComponent() {
   const mode = useAtomValue(themeModeAtom)
   // This component will only re-render when theme changes
 }
-```
+````
 
 ### Custom Theme Logic
 
@@ -291,6 +291,7 @@ export const isDarkModeAtom = atom((get) => get(themeModeAtom) === 'dark')
 // Usage
 const isDark = useAtomValue(isDarkModeAtom)
 ```
+
 ````
 
 ### Custom Theme Logic
@@ -477,3 +478,4 @@ Consider exploring more Jotai features:
 - [Async atoms](https://jotai.org/docs/guides/async) for server state
 - [Atom families](https://jotai.org/docs/utilities/family) for dynamic atoms
 - [Integration with React Query](https://jotai.org/docs/integrations/query) for data fetching
+````
