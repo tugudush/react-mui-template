@@ -1,4 +1,18 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
+
+// Mock MUI icons to avoid "too many open files" error
+vi.mock('@mui/icons-material', () => ({
+  Brightness4: () => null,
+  Brightness7: () => null,
+}))
+
+// Mock the theme hook
+vi.mock('@/hooks/useTheme', () => ({
+  useTheme: () => ({
+    mode: 'light',
+    toggleTheme: vi.fn(),
+  }),
+}))
 
 describe('ThemeToggle Index Export', () => {
   it('should export ThemeToggle component as default', async () => {

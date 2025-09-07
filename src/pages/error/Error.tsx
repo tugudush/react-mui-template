@@ -1,3 +1,4 @@
+import { Box, Button, Container, Typography } from '@mui/material'
 import { useNavigate } from 'react-router'
 
 interface ErrorPageProps {
@@ -16,10 +17,31 @@ export default function ErrorPage({
   }
 
   return (
-    <>
-      <h1>{errorCode}</h1>
-      <h4>{errorMessage}</h4>
-      <button onClick={handleGoBack}>Go Back</button>
-    </>
+    <Container maxWidth='md' sx={{ mt: 4, mb: 4 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '60vh',
+          textAlign: 'center',
+        }}
+      >
+        <Typography variant='h1' component='h1' color='error' gutterBottom>
+          {errorCode}
+        </Typography>
+        <Typography variant='h4' component='h2' gutterBottom>
+          {errorMessage}
+        </Typography>
+        <Typography variant='body1' color='text.secondary' paragraph>
+          The page you are looking for might have been removed or is temporarily
+          unavailable.
+        </Typography>
+        <Button variant='contained' color='primary' onClick={handleGoBack}>
+          Go Back
+        </Button>
+      </Box>
+    </Container>
   )
 }
