@@ -29,7 +29,6 @@ const ErrorDemo = ({ shouldThrow }: { shouldThrow: boolean }) => {
 
 export default function ErrorDemoPage() {
   const [throwError, setThrowError] = useState(false)
-  const [throwGlobalError, setThrowGlobalError] = useState(false)
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -130,16 +129,18 @@ export default function ErrorDemoPage() {
                   borderRadius: 1,
                 }}
               >
-                <ErrorDemo shouldThrow={throwGlobalError} />
+                <Typography color='success.main'>✅ Component working correctly</Typography>
               </Box>
 
               <Box sx={{ mt: 2 }}>
                 <Button
                   variant='contained'
                   color='error'
-                  onClick={() => setThrowGlobalError(!throwGlobalError)}
+                  onClick={() => {
+                    throw new Error('This is a global error to demonstrate the global error boundary!')
+                  }}
                 >
-                  {throwGlobalError ? 'Fix Global Component' : 'Trigger Global Error'}
+                  Trigger Global Error
                 </Button>
               </Box>
             </CardContent>
