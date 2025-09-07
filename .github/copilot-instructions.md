@@ -6,6 +6,15 @@ This is a **React 19 + React Router 7 + Vite** template focused on **lazy loadin
 
 **Core Flow**: `main.tsx` → `App.tsx` → `routes.tsx` → `SuspenseRoute` → lazy-loaded pages
 
+**Key Technologies**:
+- **React 19.1.1** - Latest stable React with modern features
+- **React Router 7.8.2** - Latest routing with simplified API structure
+- **Vite 7.1.2** - Fast build tool and dev server
+- **Material-UI 7.3.2** - React component library with theme support
+- **Jotai 2.13.1** - Atomic state management for themes
+- **TypeScript 5.8.3** - Type safety with strict configuration
+- **Vitest 3.2.4** - Modern testing framework
+
 ## Essential Patterns
 
 ### Lazy Loading Pattern
@@ -41,13 +50,15 @@ component-name/
 - `npm run dev` - Start development server
 - `npm run ltf` - **Recommended**: Lint + TypeCheck + Format (use before commits)
 - `npm run ltfb` - Full pipeline: Lint + TypeCheck + Format + Build
+- `npm run ltft` - Full pipeline: Lint + TypeCheck + Format + Test
 - `npm run typecheck` - TypeScript checking without building
 
 ## TypeScript Configuration
 
 - Uses composite TypeScript setup (`tsconfig.json` references `tsconfig.app.json` and `tsconfig.node.json`)
-- Strict type checking enabled
+- Strict type checking enabled with TypeScript ~5.8.3
 - Import sorting via Prettier plugin (`@trivago/prettier-plugin-sort-imports`)
+- Path aliases configured for clean imports (`@/` → `src/`)
 
 ## Code Style Enforcement
 
