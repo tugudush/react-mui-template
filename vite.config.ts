@@ -1,13 +1,10 @@
-import react from '@vitejs/plugin-react'
-import path from 'path'
 import { defineConfig } from 'vite'
+
+import { default as vitestConfig } from './vitest.config'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
-  },
+  ...vitestConfig,
+  // Remove test config for production build
+  test: undefined,
 })
