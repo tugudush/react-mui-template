@@ -1,4 +1,5 @@
 import { AppBar, Button, Toolbar, Typography } from '@mui/material'
+import { Link } from 'react-router'
 
 import ThemeToggle from '@/components/themeToggle'
 import { useTheme } from '@/hooks/useTheme'
@@ -48,18 +49,36 @@ export default function HomePage() {
               Secondary Button
             </Button>
             <Button variant='text'>Text Button</Button>
+            <Button
+              variant='outlined'
+              color='info'
+              component={Link}
+              to='/error-demo'
+            >
+              View Error Demo
+            </Button>
           </StyledButtonStack>
         </StyledWelcomePaper>
 
         <StyledFeaturesPaper elevation={2}>
           <Typography variant='h5' gutterBottom>
-            Theme Features
+            Template Features
           </Typography>
-          <Typography variant='body2' color='text.secondary'>
+          <Typography variant='body2' color='text.secondary' paragraph>
             • Persistent theme preference (localStorage) • System color scheme
             detection • Smooth transitions between light and dark modes • CSS
-            variables for better performance • Customizable theme tokens
+            variables for better performance • Customizable theme tokens • Error
+            boundaries for graceful error handling • Comprehensive testing
+            coverage • Modern React 19 patterns
           </Typography>
+          <StyledButtonStack direction='row' spacing={2} sx={{ mt: 2 }}>
+            <Button variant='outlined' component={Link} to='/about'>
+              Learn More
+            </Button>
+            <Button variant='text' component={Link} to='/error-demo'>
+              Error Boundary Demo
+            </Button>
+          </StyledButtonStack>
         </StyledFeaturesPaper>
       </StyledMainContainer>
     </StyledRootBox>

@@ -65,7 +65,7 @@ describe('Home Page', () => {
     render(<HomePage />)
 
     const featuresHeading = screen.getByRole('heading', {
-      name: /theme features/i,
+      name: /template features/i,
     })
     expect(featuresHeading).toBeInTheDocument()
 

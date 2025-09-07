@@ -1,5 +1,4 @@
 import { fireEvent, screen } from '@testing-library/react'
-import { MemoryRouter } from 'react-router'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { render } from '@/test-utils'
@@ -16,17 +15,13 @@ vi.mock('react-router', async () => {
   }
 })
 
-const renderWithRouter = (component: React.ReactNode) => {
-  return render(<MemoryRouter>{component}</MemoryRouter>)
-}
-
 describe('Error Page', () => {
   beforeEach(() => {
     mockNavigate.mockClear()
   })
 
   it('should render default error (404)', () => {
-    renderWithRouter(<ErrorPage />)
+    render(<ErrorPage />)
 
     expect(screen.getByRole('heading', { name: '404' })).toBeInTheDocument()
     expect(
@@ -36,9 +31,7 @@ describe('Error Page', () => {
   })
 
   it('should render custom error code and message', () => {
-    renderWithRouter(
-      <ErrorPage errorCode={500} errorMessage='Internal Server Error' />
-    )
+    render(<ErrorPage errorCode={500} errorMessage='Internal Server Error' />)
 
     expect(screen.getByRole('heading', { name: '500' })).toBeInTheDocument()
     expect(
@@ -47,7 +40,7 @@ describe('Error Page', () => {
   })
 
   it('should call navigate(-1) when go back button is clicked', () => {
-    renderWithRouter(<ErrorPage />)
+    render(<ErrorPage />)
 
     const goBackButton = screen.getByRole('button', { name: /go back/i })
     fireEvent.click(goBackButton)
@@ -57,7 +50,7 @@ describe('Error Page', () => {
   })
 
   it('should render with only error code when message is empty', () => {
-    renderWithRouter(<ErrorPage errorCode={403} errorMessage='' />)
+    render(<ErrorPage errorCode={403} errorMessage='' />)
 
     expect(screen.getByRole('heading', { name: '403' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: '' })).toBeInTheDocument()

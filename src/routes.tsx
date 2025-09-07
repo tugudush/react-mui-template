@@ -7,6 +7,7 @@ import SuspenseRoute from './components/suspenseRoute'
 
 const HomePage = lazy(() => import('./pages/home'))
 const AboutPage = lazy(() => import('./pages/about'))
+const ErrorDemoPage = lazy(() => import('./pages/errorDemo'))
 const ErrorPage = lazy(() => import('./pages/error'))
 
 export default function Routes() {
@@ -18,6 +19,10 @@ export default function Routes() {
     {
       path: '/about',
       element: <SuspenseRoute component={AboutPage} />,
+    },
+    {
+      path: '/error-demo',
+      element: <SuspenseRoute component={ErrorDemoPage} />,
     },
     {
       path: '*',

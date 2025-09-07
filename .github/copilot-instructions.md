@@ -7,6 +7,7 @@ This is a **React 19 + React Router 7 + Vite** template focused on **lazy loadin
 **Core Flow**: `main.tsx` → `App.tsx` → `routes.tsx` → `SuspenseRoute` → lazy-loaded pages
 
 **Key Technologies**:
+
 - **React 19.1.1** - Latest stable React with modern features
 - **React Router 7.8.2** - Latest routing with simplified API structure
 - **Vite 7.1.2** - Fast build tool and dev server
